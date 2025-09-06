@@ -1,0 +1,34 @@
+name: Test Workflow
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ feature-build ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Test basic functionality
+        run: |
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "Working directory contents:"
+          ls -la
+          
+      - name: Test Helm lint
+        run: |
+          # Install Helm
+          curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+          
+          # Lint the chart
+          helm lint ./chart
+          
+      - name: Test Chart.yaml
+        run: |
+          echo "Current Chart.yaml:"
+          cat ./chart/Chart.yaml
