@@ -1,4 +1,4 @@
-# Krateo V2 Template Fireworks app (clone)
+# Krateo V2 Template Fireworks app (clone 2)
 
 This is a template used to scaffold a toolchain to host and deploy a fully functional frontend App (FireworksApp).
 
